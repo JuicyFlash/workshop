@@ -35,3 +35,10 @@
 /config/master.key
 #idea
 /.idea/*
+/workshop_dev-shm
+/workshop_dev-wal
+/workshop_dev
+/db/test.sqlite3
+/db/development.sqlite3
+/db/development.sqlite3-shm
+/db/development.sqlite3-wal
