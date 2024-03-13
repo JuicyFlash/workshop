@@ -46,6 +46,10 @@ gem "bootsnap", require: false
 #Slim
 gem "slim-rails"
 
+gem 'sassc-rails'
+gem 'bootstrap'
+
+
 group :development, :test do
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
