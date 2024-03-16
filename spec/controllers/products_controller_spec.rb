@@ -12,4 +12,22 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to render_template :index
     end
   end
+
+  describe 'manipulate the products in the basket' do
+    let!(:product) { create(:product) }
+    let!(:basket) { create(:basket) }
+
+    it 'call Basket#put_product after call put_product_path' do
+      expect_any_instance_of(Basket).to receive(:put_product)
+      patch :put_in_basket, params: { id: product }
+    end
+    it 'call Basket#put_product_out after call put_out_product_path' do
+      expect_any_instance_of(Basket).to receive(:put_product_out)
+      patch :put_out_basket, params: { id: product }
+    end
+    it 'call Basket#purge_product after call purge_product_path' do
+      expect_any_instance_of(Basket).to receive(:purge_product)
+      patch :purge_from_basket, params: { id: product }
+    end
+  end
 end

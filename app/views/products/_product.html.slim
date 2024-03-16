@@ -5,3 +5,9 @@
         = product.title
       p.card-text
         = product.description
+      p
+        = link_to 'put', put_in_basket_product_path(product),  data: { turbo_method: :patch }
+      p
+        = link_to 'out', put_out_basket_product_path(product),  data: { turbo_method: :patch }
+      p
+        = link_to 'purge', purge_from_basket_product_path(product),  data: { turbo_method: :patch }
