@@ -25,12 +25,14 @@ nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-dark aria-label="Main navig
               a.dropdown-item href="#"
                 = "Rubles"
         li.nav-item.dropdown
-          a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
-            = "Account"
-          ul.dropdown-menu
-            li
-              a.dropdown-item href="#"
-                = "Another"
-            li
-              a.dropdown-item href="#"
-                = "Something"
+          - if user_signed_in?
+            a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
+              = "Account"
+            ul.dropdown-menu
+              li
+                = link_to 'Log out', destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete }
+              li
+                a.dropdown-item href="#"
+                  = "Something"
+          - else
+            = link_to 'Log in', new_user_session_path,class: "nav-link" ,  data: { turbo_method: :get }
