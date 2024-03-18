@@ -49,6 +49,7 @@ gem "slim-rails"
 gem 'sassc-rails'
 gem 'bootstrap'
 
+gem "devise", github: "heartcombo/devise", ref: "f8d1ea90bc3"
 
 group :development, :test do
 
@@ -78,4 +79,5 @@ group :test do
   gem "selenium-webdriver"
   gem 'shoulda-matchers', '~> 6.0'
   gem 'rails-controller-testing'
+  gem 'launchy'
 end

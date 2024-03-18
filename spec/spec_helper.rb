@@ -91,4 +91,7 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.before (scope = :suite) do
+    %x[bundle exec rake assets:precompile]
+  end
 end
