@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Basket, type: :model do
   it { should have_many(:products).dependent(:destroy) }
+  it { should belong_to(:user) }
 
   describe 'manipulate products in basket' do
     let(:product) { create(:product) }
