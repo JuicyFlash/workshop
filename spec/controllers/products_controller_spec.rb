@@ -16,7 +16,9 @@ RSpec.describe ProductsController, type: :controller do
   describe 'manipulate the products in the basket' do
     let!(:product) { create(:product) }
     let!(:basket) { create(:basket) }
+    let!(:user) { create(:user) }
 
+    before { login(user) }
     it 'call Basket#put_product after call put_product_path' do
       expect_any_instance_of(Basket).to receive(:put_product)
       patch :put_in_basket, params: { id: product }

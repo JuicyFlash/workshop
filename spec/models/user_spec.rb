@@ -23,4 +23,13 @@ RSpec.describe User, type: :model do
       expect(old_user_email).to eq User.first.email
     end
   end
+
+  describe 'create user basket' do
+    let(:user) { build :user }
+
+    it 'create basket' do
+      expect(Basket).to receive(:create).with(user: user)
+      user.save!
+    end
+  end
 end
