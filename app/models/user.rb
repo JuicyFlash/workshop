@@ -10,4 +10,11 @@ class User < ApplicationRecord
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Incorrect email format", on: [:create, :update] },
             uniqueness: { on: [:create, :update] }
+
+  after_create :create_user_basket
+
+  private
+  def create_user_basket
+     Basket.create(user: self)
+  end
 end

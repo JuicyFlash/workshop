@@ -20,6 +20,6 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
   end
   def find_basket
-    @basket = Basket.first
+    @basket = current_user.basket
   end
 end
