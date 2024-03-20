@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_213854) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_20_101337) do
   create_table "basket_products", force: :cascade do |t|
     t.integer "count", default: 1
     t.datetime "created_at", null: false
@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_213854) do
   create_table "baskets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_baskets_on_user_id"
   end
 
   create_table "brands", force: :cascade do |t|
@@ -58,5 +60,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_213854) do
 
   add_foreign_key "basket_products", "baskets"
   add_foreign_key "basket_products", "products"
+  add_foreign_key "baskets", "users"
   add_foreign_key "products", "brands"
 end
