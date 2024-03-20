@@ -11,6 +11,9 @@
 def destroy_data
   Brand.destroy_all
   Product.destroy_all
+  User.destroy_all
+  Basket.destroy_all
+  BasketProduct.destroy_all
 end
 
 def load_data
