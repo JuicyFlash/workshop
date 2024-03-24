@@ -1,0 +1,4 @@
+- if user_signed_in?
+  li.nav-item.dropdown id="nav_basket"
+    .nav-basket
+      = link_to nav_basket(@basket), basket_path(@basket), class: "nav-link"
