@@ -47,9 +47,12 @@ gem "bootsnap", require: false
 gem "slim-rails"
 
 gem 'sassc-rails'
+
 gem 'bootstrap'
 
 gem "devise", github: "heartcombo/devise", ref: "f8d1ea90bc3"
+
+gem 'pundit'
 
 group :development, :test do
 
