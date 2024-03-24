@@ -11,6 +11,7 @@ class Basket < ApplicationRecord
       @product_in_basket.count = @product_in_basket.count + 1
     end
     @product_in_basket.save
+    @product_in_basket
   end
   def put_product_out(removed_product)
     @product_in_basket = products.find_by(product_id: removed_product.id)
@@ -20,13 +21,20 @@ class Basket < ApplicationRecord
       @product_in_basket.count = @product_in_basket.count - 1
       @product_in_basket.save
     else
+      @product_in_basket.count = @product_in_basket.count - 1
       purge_product(@product_in_basket)
     end
+    @product_in_basket
   end
   def purge_product(purged_product)
     @product_in_basket ||= products.find_by(product_id: purged_product.id)
     return if @product_in_basket.nil?
 
     @product_in_basket.destroy
+
+    @product_in_basket
+  end
+  def products_count
+    products.sum(:count)
   end
 end

@@ -1,0 +1,4 @@
+.container
+  .basket_products
+    - @basket_products.each  do |basket_product|
+      = render 'baskets/basket_product', basket_product: basket_product

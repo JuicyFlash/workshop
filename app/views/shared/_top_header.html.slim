@@ -35,4 +35,5 @@ nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-dark aria-label="Main navig
                 a.dropdown-item href="#"
                   = "Something"
           - else
-            = link_to 'Log in', new_user_session_path,class: "nav-link" ,  data: { turbo_method: :get }
+            = link_to 'Log in', new_user_session_path, class: "nav-link" ,  data: { turbo_method: :get }
+        = render "shared/nav_basket"
