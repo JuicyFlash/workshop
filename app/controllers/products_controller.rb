@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   before_action :find_product, only: %i[put_in_basket purge_from_basket put_out_basket]
-  before_action :find_basket, only: %i[index put_in_basket purge_from_basket put_out_basket]
+   before_action :find_basket, only: %i[index put_in_basket purge_from_basket put_out_basket]
   def index
     @products = Product.all
   end
@@ -30,9 +30,7 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
   end
   def find_basket
-    return if current_user.nil?
-
-    @basket = current_user.basket
+    @basket = basket_service.basket
   end
   def respond_with_turbo(streams)
     respond_to do |format|

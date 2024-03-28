@@ -4,13 +4,14 @@ feature 'User can purge product from basket' do
 
   describe 'Authenticated user' do
     given!(:user) { create(:user) }
-    given!(:basket_product) { create(:basket_product, basket: user.basket) }
+    given!(:basket) { create(:basket, user: user) }
+    given!(:basket_product) { create(:basket_product, basket: basket) }
 
     background do
       sign_in(user)
       basket_product.count = 3
       basket_product.save
-      visit basket_path(user.basket)
+      visit basket_path(basket)
     end
     scenario 'have purge link' do
       within "#basket_product_#{basket_product.id}" do

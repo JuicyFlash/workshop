@@ -1,7 +1,7 @@
 class Basket < ApplicationRecord
 
   has_many :products, foreign_key: 'basket_id', class_name: 'BasketProduct', dependent: :destroy
-  belongs_to :user
+  belongs_to :user, optional: true
   def put_product(placed_product)
     @product_in_basket = products.find_by(product_id: placed_product.id)
     if @product_in_basket.nil?
