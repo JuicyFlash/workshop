@@ -9,6 +9,6 @@ class BasketsController < ApplicationController
   private
 
   def find_basket
-    @basket = current_user.basket
+    @basket = basket_service.basket
   end
 end

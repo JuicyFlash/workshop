@@ -4,11 +4,12 @@ feature 'User can add product in basket' do
 
   describe 'Authenticated user' do
     given!(:user) { create(:user) }
-    given!(:basket_product) { create(:basket_product, basket: user.basket) }
+    given!(:basket) { create(:basket, user: user) }
+    given!(:basket_product) { create(:basket_product, basket: basket) }
 
     background do
       sign_in(user)
-      visit basket_path(user.basket)
+      visit basket_path(basket)
     end
     scenario 'have add link' do
        within "#basket_product_#{basket_product.id}" do

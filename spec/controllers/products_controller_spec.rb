@@ -16,7 +16,8 @@ RSpec.describe ProductsController, type: :controller do
   describe 'manipulate the products in the basket' do
     let!(:product) { create(:product) }
     let!(:user) { create(:user) }
-    let!(:basket_product) { create(:basket_product, basket: user.basket, product: product) }
+    let!(:basket) { create(:basket, user: user) }
+    let!(:basket_product) { create(:basket_product, basket: basket, product: product) }
 
     before do
       login(user)
