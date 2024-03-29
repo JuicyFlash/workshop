@@ -1,0 +1,4 @@
+= form_with model: [product, basket_product], local: false do |f|
+  = f.label :count
+  = f.text_field :count, class: "form-control"
+  = f.submit 'add', name: 'add'

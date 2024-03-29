@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User can put out product from basket' do
+feature 'User can add product in basket_products' do
 
   describe 'Authenticated user' do
     given!(:user) { create(:user) }
@@ -9,29 +9,28 @@ feature 'User can put out product from basket' do
 
     background do
       sign_in(user)
-      basket_product.count = 3
-      basket_product.save
       visit basket_path(basket)
     end
-    scenario 'have put out link' do
-      within "#basket_product_#{basket_product.id}" do
-        expect(page).to have_link 'out'
-      end
+    scenario 'have add link' do
+       within "#basket_product_#{basket_product.id}" do
+        expect(page).to have_link 'add'
+       end
     end
 
-    scenario 'put out product' do
+    scenario 'add product' do
       within "#basket_product_#{basket_product.id}" do
         within ".count" do
           expect(page).to have_content basket_product.count
         end
-        click_on 'out'
+        click_on 'add'
       end
       within "#basket_product_#{basket_product.id}" do
         within ".count" do
-          expect(page).to have_content basket_product.count - 1
+          expect(page).to have_content basket_product.count + 1
           expect(page).to_not have_content basket_product.count
         end
       end
     end
   end
 end
+
