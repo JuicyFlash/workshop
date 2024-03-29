@@ -3,7 +3,7 @@ class BasketsController < ApplicationController
   before_action :find_basket, only: %i[show]
 
   def show
-    @basket_products = @basket.products
+    @basket_products = @basket.basket_products
   end
 
   private

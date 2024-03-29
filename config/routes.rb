@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "products#index"
   resources :products, only: %i[index], shallow: true  do
-    member do
-      patch :put_in_basket
-      patch :put_out_basket
-      patch :purge_from_basket
+    resources :basket_products, only: %i[create destroy] do
+      member do
+        patch :add
+        patch :remove
+      end
     end
   end
 
