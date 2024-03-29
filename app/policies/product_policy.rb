@@ -8,19 +8,4 @@ class ProductPolicy < ApplicationPolicy
   def index?
     true
   end
-  def put_in_basket?
-    return false unless user.present?
-
-    true
-  end
-  def put_out_basket?
-    return false unless user.present?
-
-    true
-  end
-  def purge_from_basket?
-    return false unless user.present?
-
-    true
-  end
 end
