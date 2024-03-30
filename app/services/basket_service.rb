@@ -32,14 +32,16 @@ class BasketService
     @basket = Basket.create(user_id: @user.id) if @basket.nil?
 
     if @session[:basket_id].present? && @session[:basket_id] != @basket.id
-      @basket.copy_basket_products_from(@session[:basket_id])
-      purge_basket(@session[:basket_id])
+      @basket.transaction do
+        @basket.copy_basket_products_from(@session[:basket_id])
+        purge_basket(@session[:basket_id])
+      end
       @session[:basket_id] = nil
     end
   end
 
   def purge_basket(purged_basket_id)
-    Basket.destroy(id = purged_basket_id)
+    Basket.delete(id = purged_basket_id)
   end
 
   def set_new_basket
