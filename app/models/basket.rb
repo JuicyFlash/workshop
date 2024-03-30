@@ -9,4 +9,9 @@ class Basket < ApplicationRecord
   def products_count
     products.sum(:count)
   end
+  def copy_basket_products_from(source_basket_id)
+    BasketProduct.transaction do
+      BasketProduct.where(basket_id: source_basket_id).update_all(basket_id: id)
+    end
+  end
 end

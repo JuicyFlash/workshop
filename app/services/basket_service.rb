@@ -32,18 +32,14 @@ class BasketService
     @basket = Basket.create(user_id: @user.id) if @basket.nil?
 
     if @session[:basket_id].present? && @session[:basket_id] != @basket.id
-      move_basket_items_from_to(@session[:basket_id], @basket.id)
+      @basket.copy_basket_products_from(@session[:basket_id])
       purge_basket(@session[:basket_id])
       @session[:basket_id] = nil
     end
   end
 
-  def move_basket_items_from_to(basket_id_from, basket_id_to)
-    BasketProduct.where(basket_id: basket_id_from).update_all(basket_id: basket_id_to)
-  end
-
   def purge_basket(purged_basket_id)
-    Basket.delete(id = purged_basket_id)
+    Basket.destroy(id = purged_basket_id)
   end
 
   def set_new_basket
