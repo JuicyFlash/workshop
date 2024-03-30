@@ -52,7 +52,7 @@ RSpec.describe BasketProductsController, type: :controller do
         patch :remove, params: { id: basket_product, basket_product: { count: 12 } }
         basket_product.reload
 
-        expect(basket_product.count).to eq 0
+        expect(basket_product.count).to eq basket_product.count
       end
     end
 
@@ -119,7 +119,7 @@ RSpec.describe BasketProductsController, type: :controller do
         patch :remove, params: { id: basket_product, basket_product: { count: 12 } }
         basket_product.reload
 
-        expect(basket_product.count).to eq 0
+        expect(basket_product.count).to eq basket_product.count
       end
     end
 

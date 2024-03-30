@@ -9,7 +9,6 @@ class BasketProductsController < ApplicationController
     if @basket.product_exist_in_basket?(@product)
       @basket_product = @basket.basket_products.find_by(product_id: @product.id)
       @basket_product.count = @basket_product.count + @count
-      @basket_product.count = 0 if @basket_product.count < 0
     else
       @basket_product = @basket.basket_products.build(product_id: @product.id, count: @count)
     end
@@ -72,7 +71,6 @@ class BasketProductsController < ApplicationController
 
   def update_basket_product
     @basket_product.count = @basket_product.count + @count
-    @basket_product.count = 0 if @basket_product.count < 0
     @basket_product.save
 
     respond_with_turbo([turbo_update_nav_basket, turbo_update_basket_product])
