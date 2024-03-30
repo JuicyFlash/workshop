@@ -29,16 +29,12 @@ class BasketService
   def prepare_basket_by_user
     @basket = @user.basket
 
-    if @basket.nil?
-      @basket = Basket.create(user_id: @user.id)
-    end
+    @basket = Basket.create(user_id: @user.id) if @basket.nil?
 
-    unless @session[:basket_id].nil?
-      if @basket.id != @session[:basket_id]
-        move_basket_items_from_to(@session[:basket_id], @basket.id)
-        purge_basket(@session[:basket_id])
-        @session[:basket_id] = nil
-      end
+    if @session[:basket_id].present? && @session[:basket_id] != @basket.id
+      move_basket_items_from_to(@session[:basket_id], @basket.id)
+      purge_basket(@session[:basket_id])
+      @session[:basket_id] = nil
     end
   end
 
