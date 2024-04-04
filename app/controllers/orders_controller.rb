@@ -5,12 +5,15 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id if current_user.present?
-    @basket.products.find_each do |product|
-       @order.order_products.new(product_id: product.id)
+    @basket.basket_products.find_each do |basket_product|
+       @order.order_products.new(product_id: basket_product.product_id, count: basket_product.count)
     end
-    if  @order.save
+    if @order.save
       @basket.basket_products.destroy_all
-      flash[:success] = "Заказ оформлен #{@order.id}"
+      respond_to do |format|
+        format.turbo_stream { flash[:notice] = "Заказ оформлен #{@order.id}" }
+        format.html { flash[:notice] = "Заказ оформлен #{@order.id}" }
+      end
       redirect_to(root_path)
     end
   end

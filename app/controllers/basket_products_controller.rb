@@ -16,7 +16,7 @@ class BasketProductsController < ApplicationController
     if @basket_product.save
       respond_to do |format|
         format.turbo_stream { flash.now[:notice] = "Товар добавлен в корзину" }
-        format.html { redirect_to root_path, notice: 'Товар добавлен в корзину' }
+        format.html { redirect_to root_path, notice: "Товар добавлен в корзину" }
       end
     end
   end
@@ -25,6 +25,7 @@ class BasketProductsController < ApplicationController
     update_basket_product
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to basket_path(@basket) }
     end
   end
@@ -36,6 +37,7 @@ class BasketProductsController < ApplicationController
     update_basket_product
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to basket_path(@basket) }
     end
   end
@@ -44,6 +46,7 @@ class BasketProductsController < ApplicationController
     @basket_product.destroy
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to basket_path(@basket) }
     end
   end
