@@ -12,13 +12,21 @@ class BasketProductsController < ApplicationController
     else
       @basket_product = @basket.basket_products.build(product_id: @product.id, count: @count)
     end
-    @basket_product.save
 
-    respond_with_turbo([turbo_update_nav_basket])
+    if @basket_product.save
+      respond_to do |format|
+        format.turbo_stream { flash.now[:notice] = "Товар добавлен в корзину" }
+        format.html { redirect_to root_path, notice: 'Товар добавлен в корзину' }
+      end
+    end
   end
 
   def add
     update_basket_product
+
+    respond_to do |format|
+      format.html { redirect_to basket_path(@basket) }
+    end
   end
 
   def remove
@@ -26,12 +34,18 @@ class BasketProductsController < ApplicationController
 
     @count = @count * (-1)
     update_basket_product
+
+    respond_to do |format|
+      format.html { redirect_to basket_path(@basket) }
+    end
   end
 
   def destroy
     @basket_product.destroy
 
-    respond_with_turbo([turbo_update_nav_basket, turbo_remove_basket_product])
+    respond_to do |format|
+      format.html { redirect_to basket_path(@basket) }
+    end
   end
 
   private
@@ -52,29 +66,8 @@ class BasketProductsController < ApplicationController
     @product = Product.find_by(id: params[:product_id])
   end
 
-  def respond_with_turbo(streams)
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: streams }
-      format.html { redirect_to basket_path(@basket) }
-    end
-  end
-
-  def turbo_update_basket_product
-    turbo_stream.update(@basket_product, partial: 'basket_products/basket_product', locals: { basket_product: @basket_product })
-  end
-
-  def turbo_remove_basket_product
-    turbo_stream.remove(@basket_product)
-  end
-
-  def turbo_update_nav_basket
-    turbo_stream.update('nav_basket', partial: 'shared/nav_basket')
-  end
-
   def update_basket_product
     @basket_product.count = @basket_product.count + @count
     @basket_product.save
-
-    respond_with_turbo([turbo_update_nav_basket, turbo_update_basket_product])
   end
 end
