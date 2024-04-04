@@ -1,0 +1,34 @@
+.container
+  = form_with model: order, local: false do |order_form|
+    = order_form.fields_for :detail, order.detail do |detail_form|
+      .row
+        .col-md-6
+          = detail_form.label :Имя
+          p
+            = detail_form.text_field :first_name, class: "form-control"
+        .col-md-6
+          = detail_form.label :Фамилия
+          p
+            = detail_form.text_field :last_name, class: "form-control"
+      p
+      .row
+        .col-md-6
+          = detail_form.label :Город
+          p
+            = detail_form.text_field :city, class: "form-control"
+        .col-md-6
+          = detail_form.label :Телефон
+          p
+            = detail_form.text_field :phone, class: "form-control"
+      p
+      .row
+        .col-md-9
+          = detail_form.label :Улица
+          p
+            = detail_form.text_field :street, class: "form-control"
+        .col-md-3
+          = detail_form.label :Дом
+          p
+            = detail_form.text_field :house, class: "form-control"
+
+    = order_form.submit 'Оформить', name: 'create', class: "btn btn-outline-dark"

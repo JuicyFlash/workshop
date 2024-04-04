@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "products#index"
+
   resources :products, only: %i[index], shallow: true  do
     resources :basket_products, only: %i[create destroy] do
       member do
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: %i[] do
-    resources :baskets, only: %i[show], shallow: true
-  end
+  resources :baskets, only: %i[show]
+
+  resources :orders, only: %i[show create]
 end

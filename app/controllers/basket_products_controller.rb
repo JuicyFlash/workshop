@@ -22,6 +22,8 @@ class BasketProductsController < ApplicationController
   end
 
   def remove
+    return if @basket_product.count.eql? 1
+
     @count = @count * (-1)
     update_basket_product
   end
