@@ -1,3 +1,8 @@
 .container
-  .basket_products
-    = render @basket_products
+  .row
+    .col-md-6
+      .order
+        = render 'orders/form', order: @order
+    .col-md-6
+      .basket_products
+        = render @basket_products
