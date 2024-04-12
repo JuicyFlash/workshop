@@ -52,7 +52,7 @@ RSpec.describe OrdersController, type: :controller do
                                                      phone: order_detail.phone,
                                                      street: order_detail.street,
                                                      house: order_detail.house
-                                                   } } } }.to change(Order, :count).by(0)
+                                                   } } }, format: :turbo_stream }.to change(Order, :count).by(0)
       end
     end
 
@@ -92,7 +92,7 @@ RSpec.describe OrdersController, type: :controller do
                                                      phone: order_detail.phone,
                                                      street: order_detail.street,
                                                      house: order_detail.house
-                                                   } } } }.to change(Order, :count).by(0)
+                                                   } } }, format: :turbo_stream }.to change(Order, :count).by(0)
       end
     end
   end
