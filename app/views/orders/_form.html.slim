@@ -5,30 +5,36 @@
         .col-md-6
           = detail_form.label :Имя
           p
-            = detail_form.text_field :first_name, class: "form-control"
+          = detail_form.text_field :first_name, class: "form-control"
+          = render 'orders/detail_message', detail: order.detail, field: 'first_name'
         .col-md-6
           = detail_form.label :Фамилия
           p
-            = detail_form.text_field :last_name, class: "form-control"
+          = detail_form.text_field :last_name, class: "form-control"
+          = render 'orders/detail_message', detail: order.detail, field: 'last_name'
       p
       .row
         .col-md-6
           = detail_form.label :Город
           p
-            = detail_form.text_field :city, class: "form-control"
+          = detail_form.text_field :city, class: "form-control"
+          = render 'orders/detail_message', detail: order.detail, field: 'city'
         .col-md-6
           = detail_form.label :Телефон
           p
-            = detail_form.text_field :phone, class: "form-control"
+          = detail_form.text_field :phone, class: "form-control"
+          = render 'orders/detail_message', detail: order.detail, field: 'phone'
       p
       .row
         .col-md-9
           = detail_form.label :Улица
           p
-            = detail_form.text_field :street, class: "form-control"
+          = detail_form.text_field :street, class: "form-control"
+          = render 'orders/detail_message', detail: order.detail, field: 'street'
         .col-md-3
           = detail_form.label :Дом
           p
-            = detail_form.text_field :house, class: "form-control"
+          = detail_form.text_field :house, class: "form-control"
+          = render 'orders/detail_message', detail: order.detail, field: 'street'
 
     = order_form.submit 'Оформить', name: 'create', class: "btn btn-outline-dark"
