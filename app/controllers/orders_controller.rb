@@ -3,6 +3,8 @@ class OrdersController < ApplicationController
   before_action :find_basket, only: %i[create]
 
   def create
+    authorize @basket, :create_order?
+
     @order = Order.new(order_params)
     @order.user_id = current_user.id if current_user.present?
     @basket.basket_products.find_each do |basket_product|

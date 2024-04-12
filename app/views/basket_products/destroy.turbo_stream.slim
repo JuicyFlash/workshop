@@ -1,2 +1,4 @@
 = turbo_stream.update('nav_basket', partial: 'shared/nav_basket')
 = turbo_stream.remove(@basket_product)
+-unless policy(@basket).create_order?
+  = turbo_stream.remove('order')
