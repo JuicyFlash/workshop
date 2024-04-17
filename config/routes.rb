@@ -20,5 +20,5 @@ Rails.application.routes.draw do
 
   resources :baskets, only: %i[show]
 
-  resources :orders, only: %i[show create]
+  resources :orders, only: %i[index show create]
 end

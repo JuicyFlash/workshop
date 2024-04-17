@@ -32,8 +32,7 @@ nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-dark aria-label="Main navig
               li
                 = link_to 'Log out', destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete }
               li
-                a.dropdown-item href="#"
-                  = "Something"
+                = link_to 'My orders', orders_path, class: "dropdown-item"
           - else
             = link_to 'Log in', new_user_session_path, class: "nav-link" ,  data: { turbo_method: :get }
         = render "shared/nav_basket"

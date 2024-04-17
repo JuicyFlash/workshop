@@ -1,7 +1,14 @@
 class OrdersController < ApplicationController
 
-  before_action :find_basket, only: %i[create]
+  before_action :find_basket, only: %i[index create]
 
+  def index
+    if  current_user.present?
+      @orders = Order.find_by(user_id: current_user.id)
+    else
+      authenticate_user!
+    end
+  end
   def create
     authorize @basket, :create_order?
 

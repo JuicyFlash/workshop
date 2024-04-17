@@ -1,0 +1,9 @@
+.order
+  =order.created_at
+  .order-products
+    -order.order_products.each do |order_product|
+      .product
+        .title
+          =order_product.product.title
+        .count
+          =order_product.count
