@@ -1,4 +1,8 @@
 = form_with model: [product, basket_product], local: false do |f|
-  = f.label :count
-  = f.number_field :count, class: "form-control", value: 1, min: 1
-  = f.submit 'add', name: 'add'
+  .row.justify-content-end
+    .col-md-4
+      .d-flex.flex-column
+        .p-2.bd-highlight
+          = f.number_field :count, class: "form-control", value: 1, min: 1, id: "basket-product-#{product.id}-count"
+        .p-2.bd-highlight
+          = f.submit 'Order', name: 'add', class: "btn btn-outline-dark order-button"

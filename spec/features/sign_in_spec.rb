@@ -18,7 +18,7 @@ feature 'User can sign in' do
   end
 
   scenario 'Unregistered user tries to sign in' do
-    fill_in 'Email', with: 'wrong@test.com'
+    fill_in 'Email', with: 'wrong@sometest.com'
     fill_in 'Password', with: '123456'
     within '.new_user' do
       click_on 'Log in'

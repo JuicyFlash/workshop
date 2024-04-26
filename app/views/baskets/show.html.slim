@@ -1,9 +1,9 @@
-.container
+.container.cart
   .row
     .col-md-6
-      .order id="order"
+      .new-order id="new-order"
         -if policy(@basket).create_order?
           = render 'orders/form', order: @order
     .col-md-6
-      .basket_products
+      .container.basket_products
         = render @basket_products

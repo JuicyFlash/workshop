@@ -13,4 +13,7 @@ class ProductsController < ApplicationController
   def find_basket
     @basket = basket_service.basket
   end
+  def js_examples
+
+  end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "products#index"
+  get "js_examples" => "products#js_examples"
 
   resources :products, only: %i[index], shallow: true  do
     resources :basket_products, only: %i[create destroy] do

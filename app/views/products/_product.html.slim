@@ -1,9 +1,9 @@
-.col
-  .card
-    .card-body
-      h5.card-title
-        = product.title
-      p.card-text
-        = product.description
-      p
-        = render 'basket_products/form', product: product, basket_product: @basket_product
+.product-card.col-xl-3.overflow-visible.flex-col
+  .brand.my-4.mx-2
+    = product.brand.title.capitalize
+  .title.my-4
+    h5
+      = product.title.capitalize
+  .picture
+    = image_tag('abt-2.jpg', class: "product-picture")
+  = render 'basket_products/form', product: product, basket_product: @basket_product

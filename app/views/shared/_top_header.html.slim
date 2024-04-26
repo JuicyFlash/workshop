@@ -1,38 +1,48 @@
-nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-dark aria-label="Main navigation"
-  .col-2.p-3.mb-2
-  .container-fluid
-    .navbar-collapse.offcanvas-collapse.nav-drop id="navbarsExampleDefault"
-      ul.navbar-nav.me-auto.mb-2.mb-lg-0
-        li.nav-item.dropdown
-          a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
-            = "Language"
-          ul.dropdown-menu
-            li
-              a.dropdown-item href="#"
-                = "English"
-            li
-              a.dropdown-item href="#"
-                = "Russian"
-        li.nav-item.dropdown
-        li.nav-item.dropdown
-          a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
-            = "Currency"
-          ul.dropdown-menu
-            li
-              a.dropdown-item href="#"
-                = "Dollar"
-            li
-              a.dropdown-item href="#"
-                = "Rubles"
-        li.nav-item.dropdown
+.container-fluid.sticky-top
+  .row
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+      .container
+        a.navbar-brand href="/"
+          = "Workshop"
+        button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse id="navbarContent"
+          ul.navbar-nav.mr-auto.mb-2.mb-lg-0
+            li.nav-item
+              =link_to 'Js examples', js_examples_path, class: "nav-link"
+            li.nav-item
+              a.nav-link href="" = "About"
+            li.nav-item
+              a.nav-link href="" = "Some"
+        .d-flex
           - if user_signed_in?
-            a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
-              = "Account"
-            ul.dropdown-menu
-              li
-                = link_to 'Log out', destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete }
-              li
-                = link_to 'My orders', orders_path, class: "dropdown-item"
-          - else
-            = link_to 'Log in', new_user_session_path, class: "nav-link" ,  data: { turbo_method: :get }
-        = render "shared/nav_basket"
+            = button_to "Sign out", destroy_user_session_path, class: "button btn btn-outline-light rounded-5 mx-3", method: :delete
+          -else
+            button.btn.btn-outline-light.rounded-5 data-bs-toggle="modal" data-bs-target="#signInModalForm"
+              = "Log in"
+            = button_to "Sign up", new_user_registration_path, class: "button btn btn-sm btn-outline-light rounded-5 mx-2 my-1", method: :get
+  .row
+    .col-1.offset-10.my-1
+      .nav-cart id="nav-cart"
+        = render 'shared/nav_basket'
+
+
+.modal.fade.sign-in-modal id="signInModalForm" tabindex="-1" aria-labelledby="signInModalFormLabel" aria-hidden="true"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .row
+          h5 = "Log in"
+        h5.modal-title.fs-5#signInModalFormLabel
+        button.btn-close  type="button" data-bs-dismiss="modal" aria-label="close"
+      .modal-body
+        = render 'users/shared/sign_in'
+      .modal-footer
+        = link_to 'Sign up', new_user_registration_path
+
+/ .container-fluid.fixed-top
+/   .row.add-nav
+/     .col-md-2.mx-auto
+/       .messages id="flash-messages"
+/         = render 'shared/flash'
+    .row

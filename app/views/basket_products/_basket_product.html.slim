@@ -1,11 +1,17 @@
-.div id="basket_product_#{basket_product.id}"
+.row.cart-product id="basket_product_#{basket_product.id}"
   p = basket_product.product.title
-  .count
-    p = basket_product.count
-  .div
-    p
-      = link_to 'add', add_basket_product_path(basket_product, basket_product: {count: '1'}), format: 'turbo_stream', data: { turbo_method: :patch }
-    p
-      = link_to 'remove', remove_basket_product_path(basket_product, basket_product: {count: '1'}), format: 'turbo_stream', data: { turbo_method: :patch }
-    p
-      = link_to 'delete', basket_product_path(basket_product),  data: { turbo_method: :delete }
+  .d-flex
+    .add.mx-2
+      = button_to add_basket_product_path(basket_product, basket_product: {count: '1'}), format: 'turbo_stream',  method: :patch, type:"button", class: "btn btn-outline-dark btn-sm"
+        i class="bi bi-plus-circle"
+    .count.mx-2
+      p = basket_product.count
+    .remove.mx-2
+      = button_to  remove_basket_product_path(basket_product, basket_product: {count: '1'}), format: 'turbo_stream',   method: :patch, type:"button", class: "btn btn-outline-dark btn-sm"
+        = bi_icon('dash-circle')
+    .delete.mx-2
+      = button_to basket_product_path(basket_product),  method: :delete, type:"button", class: "btn btn-outline-dark btn-sm"
+        = bi_icon('trash')
+
+      / svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16"
+      /   path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"

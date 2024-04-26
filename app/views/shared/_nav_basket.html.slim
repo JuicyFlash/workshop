@@ -1,4 +1,16 @@
 - unless @basket.nil?
-  li.nav-item.dropdown id="nav_basket"
-    .nav-basket
-      = link_to nav_basket(@basket), basket_path(@basket), class: "nav-link"
+  = link_to basket_path(@basket)
+    .d-flex.justify-content-center
+      = image_tag('cart-2.png', width: 25, height: 20, class: "cart-image")
+      .flex-column.nav-cart-info
+        .products-quantity
+          = nav_basket_products(@basket)
+        .products-price
+          = nav_basket_price(@basket)
+
+
+/ .cart-tooltip
+/   .tooltip-text.mt-0
+/     .tooltip-form
+/       - @basket.basket_products.find_each do |basket_product|
+/         = basket_product.product.title
