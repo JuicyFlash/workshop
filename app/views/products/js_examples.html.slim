@@ -1,0 +1,19 @@
+.container.my-5
+  button.btn.btn-outline-dark#my-test-btn
+    = "TestBtn"
+  .stimulus.my-5 data-controller="hello"
+    input data-hello-target="name" type="text"
+    button.btn.btn-outline-dark data-action="click->hello#greet"
+      = "Stimulus"
+
+  .stimulus data-controller="slideshow" data-slideshow-index-value="1"
+    button data-action="slideshow#previous" ←
+    button data-action="slideshow#next" →
+    .div data-slideshow-target="slide"
+      = "🐵"
+    .div data-slideshow-target="slide"
+      = "🙈"
+    .div data-slideshow-target="slide"
+      = "🙉"
+    .div data-slideshow-target="slide"
+      = "🙊"

@@ -1,0 +1,38 @@
+.navbar.navbar-expand-lg.navbar-dark.bg-dark aria-label="Main navigation"
+  .col-2.p-3.mb-2
+  .container-fluid
+    .navbar-collapse.offcanvas-collapse.nav-drop id="navbarsExampleDefault"
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
+            = "Language"
+          ul.dropdown-menu
+            li
+              a.dropdown-item href="#"
+                = "English"
+            li
+              a.dropdown-item href="#"
+                = "Russian"
+        li.nav-item.dropdown
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
+            = "Currency"
+          ul.dropdown-menu
+            li
+              a.dropdown-item href="#"
+                = "Dollar"
+            li
+              a.dropdown-item href="#"
+                = "Rubles"
+        li.nav-item.dropdown
+          - if user_signed_in?
+            a.nav-link.dropdown-toggle href="#" data-bs-toggle="dropdown" aria-expanded="true"
+              = "Account"
+            ul.dropdown-menu
+              li
+                = link_to 'Log out', destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete }
+              li
+                = link_to 'My orders', orders_path, class: "dropdown-item"
+          - else
+            = link_to 'Log in', new_user_session_path, class: "nav-link", data: { turbo_method: :get }
+        = render "shared/nav_basket"
